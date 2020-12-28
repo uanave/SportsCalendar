@@ -1,32 +1,32 @@
 package com.sportscalendar.controller;
 
-import com.sportscalendar.logic.SportEditor;
+import com.sportscalendar.logic.SportService;
 import com.sportscalendar.persistence.domain.Sport;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/sports")
+@RequestMapping("/sports-json")
 public class SportEndpoint {
-    private final SportEditor sportEditor;
+    private final SportService sportService;
 
-    public SportEndpoint(SportEditor sportEditor) {
-        this.sportEditor = sportEditor;
+    public SportEndpoint(SportService sportService) {
+        this.sportService = sportService;
     }
 
     @PostMapping
     Sport saveSport(@RequestBody Sport sport) {
-        return sportEditor.saveSport(sport);
+        return sportService.saveSport(sport);
     }
 
     @GetMapping()
     List<Sport> findAllSports() {
-        return sportEditor.findAllSports();
+        return sportService.findAllSports();
     }
 
     @DeleteMapping("/{sportId}")
     void deleteSport(@PathVariable Long sportId) {
-        sportEditor.deleteSport(sportId);
+        sportService.deleteSport(sportId);
     }
 }

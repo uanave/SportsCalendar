@@ -37,4 +37,8 @@ public class ParticipantEditor {
     public void deleteParticipant(Long participantId) {
         participantRepository.deleteById(participantId);
     }
+
+    public List<Participant> findAll() {
+        return participantRepository.findAll();
+    }
 }

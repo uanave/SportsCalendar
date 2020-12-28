@@ -1,20 +1,28 @@
 package com.sportscalendar.persistence.domain;
 
 import com.sun.istack.NotNull;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 public class Sport {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "sport", cascade = CascadeType.ALL)
+    private List<Participant> participantList;
+
+    @OneToMany(mappedBy = "sport", cascade = CascadeType.ALL)
+    private List<Event> eventList;
 
     public Sport() {
     }

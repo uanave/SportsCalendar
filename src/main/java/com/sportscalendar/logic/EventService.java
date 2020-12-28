@@ -8,6 +8,9 @@ import com.sportscalendar.persistence.domain.Sport;
 import com.sportscalendar.persistence.repository.EventRepository;
 import com.sportscalendar.persistence.repository.ParticipantRepository;
 import com.sportscalendar.persistence.repository.SportRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,8 +57,27 @@ public class EventEditor {
         return eventRepository.findAll();
     }
 
+    public Page<Event> findAllEvents(int page) {
+        Pageable pagination = PageRequest.of(page, 5);
+        return eventRepository.findAll(pagination);
+    }
+
     public List<Event> findAllEventsBySport(Long sportId) {
         return eventRepository.findAllBySportId(sportId);
+    }
+
+    public Page<Event> findAllEventsBySport(Long sportId, int page) {
+        Pageable pagination = PageRequest.of(page, 5);
+
+        return eventRepository.findAllBySportId(sportId, pagination);
+    }
+
+    public Event findEvent(Long eventId) {
+        Optional<Event> oEvent = eventRepository.findById(eventId);
+        if (oEvent.isEmpty()) {
+            throw new EntityNotFoundException("Event not found");
+        }
+        return oEvent.get();
     }
 
     public void deleteEvent(Long eventId) {

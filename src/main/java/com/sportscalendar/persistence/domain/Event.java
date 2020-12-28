@@ -4,34 +4,38 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Event {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @Column(nullable = false)
     private LocalDateTime date;
 
-    @NotNull
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "EVENT_SPORT_FOREIGNKEY"))
+    @JoinColumn(foreignKey = @ForeignKey(name = "EVENT_SPORT_FOREIGNKEY"), nullable = false)
+    @NotNull
     private Sport sport;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             joinColumns =
-            @JoinColumn(foreignKey = @ForeignKey(name = "EP_EVENT_FOREIGNKEY")),
+            @JoinColumn(name = "event_id", foreignKey = @ForeignKey(name = "EP_EVENT_FOREIGNKEY")),
             inverseJoinColumns =
-            @JoinColumn(foreignKey = @ForeignKey(name = "EP_PARTICIPANT_FOREIGNKEY"))
+            @JoinColumn(name = "participants_id", foreignKey = @ForeignKey(name = "EP_PARTICIPANT_FOREIGNKEY")),
+            uniqueConstraints = {@UniqueConstraint(
+                    columnNames = {"event_id", "participants_id"})}
     )
-    private List<Participant> participants;
 
-    public Event(LocalDateTime date, Sport sport, List<Participant> participants) {
+    private Set<Participant> participants;
+
+    public Event(LocalDateTime date, Sport sport, Set<Participant> participants) {
         this.date = date;
         this.sport = sport;
         this.participants = participants;
@@ -43,6 +47,10 @@ public class Event {
     public Event(LocalDateTime date, Sport sport) {
         this.date = date;
         this.sport = sport;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public LocalDateTime getDate() {
@@ -61,11 +69,11 @@ public class Event {
         this.sport = sport;
     }
 
-    public List<Participant> getParticipants() {
+    public Set<Participant> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(List<Participant> participants) {
+    public void setParticipants(Set<Participant> participants) {
         this.participants = participants;
     }
 

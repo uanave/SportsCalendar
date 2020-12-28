@@ -1,6 +1,6 @@
 package com.sportscalendar.controller;
 
-import com.sportscalendar.logic.EventEditor;
+import com.sportscalendar.logic.EventService;
 import com.sportscalendar.persistence.domain.Event;
 import com.sportscalendar.persistence.domain.EventDTO;
 import org.springframework.web.bind.annotation.*;
@@ -8,42 +8,42 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/events-json")
 public class EventEndpoint {
 
-    private final EventEditor eventEditor;
+    private final EventService eventService;
 
-    public EventEndpoint(EventEditor eventEditor) {
-        this.eventEditor = eventEditor;
+    public EventEndpoint(EventService eventService) {
+        this.eventService = eventService;
     }
 
     @PostMapping
     Event saveEvent(@RequestBody EventDTO event) {
-        return eventEditor.saveEvent(event);
+        return eventService.saveEvent(event);
     }
 
     @PostMapping("/{eventId}/{participantId}")
     Event addEventParticipant(@PathVariable Long eventId, @PathVariable Long participantId) {
-        return eventEditor.addEventParticipant(eventId, participantId);
+        return eventService.addEventParticipant(eventId, participantId);
     }
 
     @GetMapping()
     List<Event> findAllEvents() {
-        return eventEditor.findAllEvents();
+        return eventService.findAllEvents();
     }
 
     @GetMapping("/{sportId}")
     List<Event> findAllEventsBySport(@PathVariable Long sportId) {
-        return eventEditor.findAllEventsBySport(sportId);
+        return eventService.findAllEventsBySport(sportId);
     }
 
     @DeleteMapping("/{eventId}")
     void deleteEvent(@PathVariable Long eventId) {
-        eventEditor.deleteEvent(eventId);
+        eventService.deleteEvent(eventId);
     }
 
     @DeleteMapping("/{eventId}/{participantId}")
     Event deleteEventParticipant(@PathVariable Long eventId, @PathVariable Long participantId) {
-        return eventEditor.deleteEventParticipant(eventId, participantId);
+        return eventService.deleteEventParticipant(eventId, participantId);
     }
 }

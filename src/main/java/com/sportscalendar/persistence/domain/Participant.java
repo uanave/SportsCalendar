@@ -3,6 +3,7 @@ package com.sportscalendar.persistence.domain;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,14 +13,16 @@ public class Participant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
 
     @ManyToOne
-    @JoinColumn(foreignKey = @ForeignKey(name = "PARTICIPANT_SPORT_FOREIGNKEY"))
     @NotNull
+    @JoinColumn(foreignKey = @ForeignKey(name = "PARTICIPANT_SPORT_FOREIGNKEY"), nullable = false)
     private Sport sport;
 
+    @ManyToMany(mappedBy = "participants", cascade = CascadeType.ALL)
+    private List<Event> eventList;
     public Participant() {
     }
 
