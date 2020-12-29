@@ -36,6 +36,7 @@ public class SportController {
         return "sport/list";
     }
 
+    /** ToDO: use Http DELETE method */
     @GetMapping("/delete/{sportId}")
     String delete(@PathVariable Long sportId) {
         sportService.deleteSport(sportId);

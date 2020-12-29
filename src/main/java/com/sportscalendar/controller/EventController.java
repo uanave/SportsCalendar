@@ -83,7 +83,8 @@ public class EventController {
         return "event/list";
     }
 
-    //    ToDO: after DELETE return to filtered or unfiltered list, depending on where the DELETE was issued.
+    /** ToDO: after DELETE return to filtered or unfiltered list, depending on where the DELETE was issued. */
+    /** ToDO: use Http DELETE method */
     @GetMapping("/delete/{eventId}")
     String deleteEvent(@PathVariable Long eventId) {
         eventService.deleteEvent(eventId);

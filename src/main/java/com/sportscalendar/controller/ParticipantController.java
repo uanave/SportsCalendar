@@ -44,6 +44,7 @@ public class ParticipantController {
         return "participant/list";
     }
 
+    /** ToDO: use Http DELETE method */
     @GetMapping("/delete/{participantId}")
     String delete(@PathVariable Long participantId) {
         participantService.deleteParticipant(participantId);
