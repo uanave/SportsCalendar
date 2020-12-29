@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sportscalendar</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>SportsCalendar</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SportsCalendar</name>
 	<description>Sports calendar with events</description>
