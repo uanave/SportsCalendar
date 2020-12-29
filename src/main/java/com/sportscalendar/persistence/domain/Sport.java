@@ -1,13 +1,13 @@
 package com.sportscalendar.persistence.domain;
 
 import com.sun.istack.NotNull;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}, name = "SPORT_NAME_UNIQUEKEY")})
 public class Sport {
 
     @Id
@@ -15,7 +15,9 @@ public class Sport {
     private Long id;
 
     @NotNull
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
+
+    /** ToDo: add constraint for length */
     private String name;
 
     @OneToMany(mappedBy = "sport", cascade = CascadeType.ALL)

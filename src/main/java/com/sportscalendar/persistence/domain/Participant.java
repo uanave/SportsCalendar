@@ -7,13 +7,15 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name"}, name = "PARTICIPANT_NAME_UNIQUEKEY")})
 public class Participant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    /** ToDo: add constraint for length */
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne
