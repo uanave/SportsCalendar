@@ -60,6 +60,7 @@ public class EventController {
         return "redirect:/event/" + eventId;
     }
 
+    /** ToDo: add more filters: date, date range, venue */
     @GetMapping
     String listEvents(@RequestParam(required = false) Long sportId, @RequestParam(defaultValue = "1") int page, Model model) {
         Page<Event> eventList;

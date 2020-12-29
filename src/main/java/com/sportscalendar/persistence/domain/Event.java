@@ -35,6 +35,8 @@ public class Event {
 
     private Set<Participant> participants;
 
+    /** ToDo: add Venue functionality */
+
     public Event(LocalDateTime date, Sport sport, Set<Participant> participants) {
         this.date = date;
         this.sport = sport;

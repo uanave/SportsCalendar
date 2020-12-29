@@ -28,6 +28,7 @@ public class SportController {
         return "redirect:/sport";
     }
 
+    /** ToDo: add pagination to sports list */
     @GetMapping
     String list(Model model) {
         List<Sport> sportList = sportService.findAllSports();

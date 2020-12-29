@@ -36,6 +36,7 @@ public class ParticipantController {
         return "redirect:/participant";
     }
 
+    /** ToDo: add pagination to participants list */
     @GetMapping
     String findAll(Model model) {
         List<Participant> participantList = participantService.findAll();
