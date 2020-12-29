@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ParticipantEditor {
+public class ParticipantService {
     private final ParticipantRepository participantRepository;
     private final SportRepository sportRepository;
 
-    public ParticipantEditor(ParticipantRepository participantRepository, SportRepository sportRepository) {
+    public ParticipantService(ParticipantRepository participantRepository, SportRepository sportRepository) {
         this.participantRepository = participantRepository;
         this.sportRepository = sportRepository;
     }

@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html-head"/>
+<body>
+<div class="content">
+    <div th:replace="fragments/header :: header"/>
+    <a href="/event/add" class="add-link" title="Add event">Add event</a>
+
+    <table class="styled-table">
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Sport <select onchange="window.location = '/event?sportId=' + this.options[this.selectedIndex].value;">
+                <option value="">Filter</option>
+                <option th:each="sport: ${sportList}" th:value="${sport.id}" th:selected="${sport.id==selectedSport}"
+                        th:text="${sport.name}"/>
+            </select></th>
+            <th>Participants</th>
+            <th colspan="3" class="actions">Actions</th>
+        </tr>
+        <tr th:each="event: ${eventList}">
+            <td th:text="${event.id}"/>
+            <td class="date-column" th:text="${#temporals.format(event.date, 'E., dd.MM.yyyy, HH:mm')}"/>
+            <td th:text="${event.sport.name}"/>
+            <td>
+                <th:block th:each="participant, iStat: ${event.participants}">
+                    <label th:text="${participant.name}"></label>
+                    <th:block th:if="${!iStat.last}"> -</th:block>
+                </th:block>
+            </td>
+            <td class="actions"><a th:href="@{/event/{id}(id=${event.id})}" title="Add participant">&#x2795;</a></td>
+            <td class="actions"><a th:href="@{/event/{id}(id=${event.id})}" title="edit">&#x270D</a></td>
+            <td class="actions"><a th:href="@{/event/delete/{id}(id=${event.id})}" title="delete"
+                                   onclick="return confirm('Are you sure you want to delete the event?')">&#x1F5D1;</a>
+            </td>
+        </tr>
+    </table>
+    <div th:if="${eventList.totalPages > 1}" class="pagination">
+        <a th:each="pageNumber : ${pageNumbers}"
+           th:href="@{/event(page=${pageNumber}, sportId=${selectedSport})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==eventList.number + 1} ? active"></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html-head"/>
+<body>
+<div class="content">
+    <div th:replace="fragments/header :: header"/>
+    <p>Add sport:</p>
+    <form method="post" action="/sport">
+        <input name="name">
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>

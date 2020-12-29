@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<div th:fragment="header" id="header">
+    <ul>
+        <li><a href="/event">Events</a></li>
+        <li><a href="/sport">Sports</a></li>
+        <li><a href="/participant">Participants</a>
+    </ul>
+    </li>
+</div>
+
+<head th:fragment="html-head">
+    <title>SportsCalendar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link th:href="@{/styles/main.css}" rel="stylesheet"/>
+</head>
+
+</body>
+</html>

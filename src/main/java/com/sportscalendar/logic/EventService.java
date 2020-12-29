@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EventEditor {
+public class EventService {
     private final SportRepository sportRepository;
     private final EventRepository eventRepository;
     private final ParticipantRepository participantRepository;
 
-    public EventEditor(SportRepository sportRepository, EventRepository eventRepository, ParticipantRepository participantRepository) {
+    public EventService(SportRepository sportRepository, EventRepository eventRepository, ParticipantRepository participantRepository) {
         this.sportRepository = sportRepository;
         this.eventRepository = eventRepository;
         this.participantRepository = participantRepository;

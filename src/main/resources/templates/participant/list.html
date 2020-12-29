@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html-head"/>
+<body>
+<div class="content">
+    <div th:replace="fragments/header :: header"/>
+    <a href="/participant/add" class="add-link" title="Add participant">Add participant</a>
+    <table class="styled-table">
+        <tr th:each="participant: ${participantList}">
+            <td th:text="${participant.id}"/>
+            <td th:text="${participant.name}"/>
+            <td th:text="${participant.sport.name}"/>
+            <td class="actions"><a th:href="@{/participant/delete/{id}(id=${participant.id})}"
+                                   title="delete"
+                                   onclick="return confirm('Are you sure you want to delete the participant? This action will remove him from related events.')">&#x1F5D1;</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,5 +1,7 @@
 package com.sportscalendar.persistence.domain;
 
+import java.util.Objects;
+
 public class ParticipantDTO {
     private String name;
     private Long sportId;
@@ -23,5 +25,18 @@ public class ParticipantDTO {
 
     public void setSportId(Long sportId) {
         this.sportId = sportId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ParticipantDTO)) return false;
+        ParticipantDTO that = (ParticipantDTO) o;
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getSportId(), that.getSportId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getSportId());
     }
 }

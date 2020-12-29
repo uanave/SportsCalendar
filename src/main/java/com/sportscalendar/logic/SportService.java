@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SportEditor {
+public class SportService {
     private final SportRepository sportRepository;
 
-    public SportEditor(SportRepository sportRepository) {
+    public SportService(SportRepository sportRepository) {
         this.sportRepository = sportRepository;
     }
 

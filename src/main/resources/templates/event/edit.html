@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: html-head"/>
+<body>
+<div class="content">
+    <div th:replace="fragments/header :: header"/>
+    <p>Event date:
+        <span th:text="${#temporals.format(event.date, 'E., dd.MM.yyyy, HH:mm')}"/></p>
+    <p>Sport:
+        <span th:text="${event.sport.name}"/></p>
+    <table>
+        <tr th:each="participant: ${event.participants}">
+            <td th:text="${participant.id}"/>
+            <td th:text="${participant.name}"/>
+            <td th:text="${participant.sport.name}"/>
+            <td>
+                <a th:href="@{/event/delete/{eventId}/{participantId}(participantId=${participant.id},eventId=${event.id})}"
+                   title="delete">&#x1F5D1;</a></td>
+        </tr>
+    </table>
+    <form method="post">
+        <select name="participantId">
+            <option value="">Choose participants</option>
+            <option th:each="participant: ${participantList}" th:value="${participant.id}"
+                    th:text="${participant.name}"/>
+        </select>
+        <input type="submit">
+    </form>
+</div>
+
+</body>
+</html>
