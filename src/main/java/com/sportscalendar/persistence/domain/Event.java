@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class Event {
                     columnNames = {"event_id", "participants_id"})}
     )
 
-    private Set<Participant> participants;
+    private Set<Participant> participants = new HashSet<>();
 
     /** ToDo: add Venue functionality */
 
