@@ -6,8 +6,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/** ToDo: create frontend in React **/
 @RestController
-@RequestMapping("/sports-json")
+@RequestMapping("api/sport")
 public class SportEndpoint {
     private final SportService sportService;
 
