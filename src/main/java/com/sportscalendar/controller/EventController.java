@@ -60,7 +60,9 @@ public class EventController {
         return "redirect:/event/" + eventId;
     }
 
-    /** ToDo: add more filters: date, date range, venue */
+    /**
+     * ToDo: add more filters: date, date range, venue
+     */
     @GetMapping
     String listEvents(@RequestParam(required = false) Long sportId, @RequestParam(defaultValue = "1") int page, Model model) {
         Page<Event> eventList;
@@ -84,7 +86,9 @@ public class EventController {
     }
 
     /** ToDO: after DELETE return to filtered or unfiltered list, depending on where the DELETE was issued. */
-    /** ToDO: use Http DELETE method */
+    /**
+     * ToDO: use Http DELETE method
+     */
     @GetMapping("/delete/{eventId}")
     String deleteEvent(@PathVariable Long eventId) {
         eventService.deleteEvent(eventId);

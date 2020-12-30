@@ -28,7 +28,9 @@ public class SportController {
         return "redirect:/sport";
     }
 
-    /** ToDo: add pagination to sports list */
+    /**
+     * ToDo: add pagination to sports list
+     */
     @GetMapping
     String list(Model model) {
         List<Sport> sportList = sportService.findAllSports();
@@ -36,7 +38,9 @@ public class SportController {
         return "sport/list";
     }
 
-    /** ToDO: use Http DELETE method */
+    /**
+     * ToDO: use Http DELETE method
+     */
     @GetMapping("/delete/{sportId}")
     String delete(@PathVariable Long sportId) {
         sportService.deleteSport(sportId);

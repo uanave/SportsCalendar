@@ -36,7 +36,9 @@ public class ParticipantController {
         return "redirect:/participant";
     }
 
-    /** ToDo: add pagination to participants list */
+    /**
+     * ToDo: add pagination to participants list
+     */
     @GetMapping
     String findAll(Model model) {
         List<Participant> participantList = participantService.findAll();
@@ -44,7 +46,9 @@ public class ParticipantController {
         return "participant/list";
     }
 
-    /** ToDO: use Http DELETE method */
+    /**
+     * ToDO: use Http DELETE method
+     */
     @GetMapping("/delete/{participantId}")
     String delete(@PathVariable Long participantId) {
         participantService.deleteParticipant(participantId);
