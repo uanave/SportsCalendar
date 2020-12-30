@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/** ToDo: create frontend in React **/
+/**
+ * ToDo: create frontend in React
+ **/
 @RestController
-@RequestMapping("api/participant")
+@RequestMapping("/api/participant")
 public class ParticipantEndpoint {
     private final ParticipantService participantService;
 
@@ -31,5 +33,10 @@ public class ParticipantEndpoint {
     @DeleteMapping("/{participantId}")
     void deleteParticipant(@PathVariable Long participantId) {
         participantService.deleteParticipant(participantId);
+    }
+
+    @GetMapping
+    List<Participant> findAllParticipants() {
+        return participantService.findAll();
     }
 }

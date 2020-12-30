@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/** ToDo: create frontend in React **/
+/**
+ * ToDo: create frontend in React
+ **/
 @RestController
-@RequestMapping("api/event")
+@RequestMapping("/api/event")
 public class EventEndpoint {
 
     private final EventService eventService;
