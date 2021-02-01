@@ -10,4 +10,4 @@ Examples:<br/>
 - a user that can create a database
 - configure the environment variables
 
-Run `env SPRING_DATASOURCE_URL="jdbc:mysql://localhost/calendar?useSSL=false&createDatabaseIfNotExist=true" SPRING_DATASOURCE_USER=calendar SPRING_DATASOURCE_PASSWORD=calendar SPRING_SECURITY_USER_NAME=admin SPRING_SECURITY_USER_PASSWORD=admin java -jar SportsCalendar-0.0.1-SNAPSHOT.jar`
+Run `env SPRING_DATASOURCE_URL="jdbc:mysql://localhost/calendar?useSSL=false&createDatabaseIfNotExist=true" SPRING_DATASOURCE_USERNAME=calendar SPRING_DATASOURCE_PASSWORD=calendar SPRING_SECURITY_USER_NAME=admin SPRING_SECURITY_USER_PASSWORD=admin java -jar SportsCalendar-0.0.1-SNAPSHOT.jar`
